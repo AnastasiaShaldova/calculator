@@ -89,22 +89,17 @@ def factorial(number):
     :param number: Число.
     :return: Результат вычисления факториала.
     """
-    # x = 1
-    # result = 0
-    # i = 0
-    # while i < number:
-    #     result += x
-    #     i += 1
 
     fact = 1
-    result = 0
     while number > 1:
+        result = 0
         i = 0
         while i < number:
             result += fact
             i += 1
+        fact = result
         number -= 1
-    return result
+    return fact
 
 
 print(f'Результат сложения: {sum(3, 3)}')
