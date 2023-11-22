@@ -82,12 +82,19 @@ def exponentiation(number, degree):
     :param degree: Степень.
     :return: Результат возведения числа в степень.
     """
-    pass
+    while degree > 0:
+        result = 0
+        i = 0
+        while i < number:
+            result += number
+            i += 1
+            degree -= 1
+        return result
 
 
 def sqrt(number):
     """
-    Функция возводит число в степень.
+    Функция извлекает корень из числа.
 
     :param number: Число.
     :return: Результат извлечения корня из числа.
@@ -121,7 +128,7 @@ print(f'Результат вычитания: {subtract(3, 2)}')
 print(f'Результат умножения: {multiply(3, 3)}')
 print(f'Результат деления: {divide(26, 3)}')
 print(f'Результат извлечения процента от числа: {extract_percentage(100, 25)}')
-print(f'Результат возведения числа в степень: {exponentiation(4, 2)}')
+print(f'Результат возведения числа в степень: {exponentiation(8, 2)}')
 print(f'Результат извлечения корня из числа: {sqrt(5)}')
 print(f'Результат вычисления факториала: {factorial(5)}')
 
