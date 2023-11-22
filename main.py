@@ -46,7 +46,21 @@ def divide(x, y):
     """
     if y == 0:
         print('Деление на 0 запрещено!')
-    pass
+    count = 0.0
+    while x >= y:
+        x -= y
+        count += 1
+    else:
+        result = 0
+        i = 0
+        while i < 10:
+            result += x
+            i += 1
+        x = result
+        while x >= y:
+            x -= y
+            count += 0.1
+    return count
 
 
 def extract_percentage(number, percentage):
@@ -105,7 +119,7 @@ def factorial(number):
 print(f'Результат сложения: {sum(3, 3)}')
 print(f'Результат вычитания: {subtract(3, 2)}')
 print(f'Результат умножения: {multiply(3, 3)}')
-print(f'Результат деления: {divide(3, 3)}')
+print(f'Результат деления: {divide(26, 3)}')
 print(f'Результат извлечения процента от числа: {extract_percentage(100, 25)}')
 print(f'Результат возведения числа в степень: {exponentiation(4, 2)}')
 print(f'Результат извлечения корня из числа: {sqrt(5)}')
