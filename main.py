@@ -83,11 +83,11 @@ def exponentiation(number, degree):
     :param degree: Степень.
     :return: Результат возведения числа в степень.
     """
-
+    result = 1
     while degree > 0:
-        result = multiply(number, number)
+        result = multiply(result, number)
         degree -= 1
-        return result
+    return result
 
 
 def sqrt(number):
@@ -98,8 +98,10 @@ def sqrt(number):
     :return: Результат извлечения корня из числа.
     """
 
-    sqrt = number ** (0.5)
+    print(number ** 0.5)
     pass
+    # result = divide(1, 2)
+    # return exponentiation(number, result)
 
 
 def factorial(number):
@@ -119,11 +121,11 @@ def factorial(number):
 
 print(f'Результат сложения: {sum(3, 3)}')
 print(f'Результат вычитания: {subtract(3, 2)}')
-print(f'Результат умножения: {multiply(3, 3)}')
-print(f'Результат деления: {divide(26, 3)}')
+print(f'Результат умножения: {multiply(3, 625)}')
+print(f'Результат деления: {divide(1, 2)}')
 print(f'Результат извлечения процента от числа: {extract_percentage(100, 27)}')
-print(f'Результат возведения числа в степень: {exponentiation(6, 2)}')
-print(f'Результат извлечения корня из числа: {sqrt(5)}')
+print(f'Результат возведения числа в степень: {exponentiation(2, 1)}')
+print(f'Результат извлечения корня из числа: {sqrt(25)}')
 print(f'Результат вычисления факториала: {factorial(5)}')
 
 correct_operations = ['+', '-', '*', '/', '%', '**', 'log']
