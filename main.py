@@ -6,6 +6,7 @@ def sum(x, y):
     :param y: Второе число.
     :return: Результат сложения.
     """
+
     return x + y
 
 
@@ -17,6 +18,7 @@ def subtract(x, y):
     :param y: Второе число.
     :return: Результат вычитания.
     """
+
     return x - y
 
 
@@ -28,6 +30,7 @@ def multiply(x, y):
     :param y: Второе число.
     :return: Результат умножения.
     """
+
     result = 0
     i = 0
     while i < y:
@@ -44,6 +47,7 @@ def divide(x, y):
     :param y: Делитель.
     :return: Результат деления.
     """
+
     if y == 0:
         print('Деление на 0 запрещено!')
     count = 0.0
@@ -51,12 +55,7 @@ def divide(x, y):
         x -= y
         count += 1
     else:
-        result = 0
-        i = 0
-        while i < 10:
-            result += x
-            i += 1
-        x = result
+        x = multiply(x, 10)
         while x >= y:
             x -= y
             count += 0.1
@@ -71,7 +70,9 @@ def extract_percentage(number, percentage):
     :param percentage: Процент, который нужно извлечь.
     :return: Результат извлечения процента от числа.
     """
-    pass
+
+    result = multiply(number, percentage)
+    return divide(result, 100)
 
 
 def exponentiation(number, degree):
@@ -82,13 +83,10 @@ def exponentiation(number, degree):
     :param degree: Степень.
     :return: Результат возведения числа в степень.
     """
+
     while degree > 0:
-        result = 0
-        i = 0
-        while i < number:
-            result += number
-            i += 1
-            degree -= 1
+        result = multiply(number, number)
+        degree -= 1
         return result
 
 
@@ -99,6 +97,7 @@ def sqrt(number):
     :param number: Число.
     :return: Результат извлечения корня из числа.
     """
+
     sqrt = number ** (0.5)
     pass
 
@@ -113,12 +112,7 @@ def factorial(number):
 
     fact = 1
     while number > 1:
-        result = 0
-        i = 0
-        while i < number:
-            result += fact
-            i += 1
-        fact = result
+        fact = multiply(fact, number)
         number -= 1
     return fact
 
@@ -127,8 +121,8 @@ print(f'Результат сложения: {sum(3, 3)}')
 print(f'Результат вычитания: {subtract(3, 2)}')
 print(f'Результат умножения: {multiply(3, 3)}')
 print(f'Результат деления: {divide(26, 3)}')
-print(f'Результат извлечения процента от числа: {extract_percentage(100, 25)}')
-print(f'Результат возведения числа в степень: {exponentiation(8, 2)}')
+print(f'Результат извлечения процента от числа: {extract_percentage(100, 27)}')
+print(f'Результат возведения числа в степень: {exponentiation(6, 2)}')
 print(f'Результат извлечения корня из числа: {sqrt(5)}')
 print(f'Результат вычисления факториала: {factorial(5)}')
 
