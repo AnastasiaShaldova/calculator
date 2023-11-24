@@ -71,8 +71,7 @@ def extract_percentage(number, percentage):
     :return: Результат извлечения процента от числа.
     """
 
-    result = multiply(number, percentage)
-    return divide(result, 100)
+    return divide(multiply(number, percentage), 100)
 
 
 def exponentiation(number, degree):
@@ -98,10 +97,7 @@ def sqrt(number):
     :return: Результат извлечения корня из числа.
     """
 
-    print(number ** 0.5)
-    pass
-    # result = divide(1, 2)
-    # return exponentiation(number, result)
+    return number ** divide(1, 2)
 
 
 def factorial(number):
@@ -119,13 +115,44 @@ def factorial(number):
     return fact
 
 
-print(f'Результат сложения: {sum(3, 3)}')
-print(f'Результат вычитания: {subtract(3, 2)}')
-print(f'Результат умножения: {multiply(3, 625)}')
-print(f'Результат деления: {divide(1, 2)}')
-print(f'Результат извлечения процента от числа: {extract_percentage(100, 27)}')
-print(f'Результат возведения числа в степень: {exponentiation(2, 1)}')
-print(f'Результат извлечения корня из числа: {sqrt(25)}')
-print(f'Результат вычисления факториала: {factorial(5)}')
+def equation(number, result):
+    """
+        Функция вычисляет простые уравнения.
 
-correct_operations = ['+', '-', '*', '/', '%', '**', 'log']
+        :param number: Число.
+        :param result: результат уравнения
+        :return: Результат простого уравнения.
+        """
+    pass
+
+
+def calculator():
+    operation = input('Выберите оператор (+, -, /, *, **, x^1/2, %, n!, equation, history): ')
+    number_1 = float(input('Введите первое число: '))
+    number_2 = float(input('Введите второе число: '))
+
+    if operation == '+':
+        print(f'Результат сложения: {sum(number_1, number_2)}')
+    elif operation == '-':
+        print(f'Результат вычитания: {subtract(number_1, number_2)}')
+    elif operation == '*':
+        print(f'Результат умножения: {multiply(number_1, number_2)}')
+    elif operation == '/':
+        print(f'Результат деления: {divide(number_1, number_2)}')
+    elif operation == '**':
+        print(f'Результат возведения числа в степень: {exponentiation(number_1, number_2)}')
+    elif operation == 'x^1/2':
+        print(f'Результат извлечения корня из числа: {sqrt(number_1)}')
+    elif operation == '%':
+        print(f'Результат извлечения процента от числа: {extract_percentage(number_1, number_2)}')
+    elif operation == 'n!':
+        print(f'Результат вычисления факториала: {factorial(number_1)}')
+    elif operation == 'history':
+        print('Вывод истории операций.')
+    else:
+        print('Ошибка: неправильный оператор!')
+
+
+if __name__ == "__main__":
+    calculator()
+
