@@ -1,4 +1,4 @@
-def sum(x, y):
+def amount(x, y):
     """
     Функция сложения.
 
@@ -35,7 +35,7 @@ def multiply(x, y):
     i = 0
     while i < y:
         result += x
-        i += 1
+        i += 1.0
     return result
 
 
@@ -115,15 +115,23 @@ def factorial(number):
     return fact
 
 
-def equation(number, result):
+def equation(number=None, operation=None, result=None):
     """
         Функция вычисляет простые уравнения.
 
+        :param operation:
         :param number: Число.
-        :param result: результат уравнения
+        :param result: Результат уравнения
         :return: Результат простого уравнения.
         """
-    pass
+    if operation == '+':
+        return result - number
+    elif operation == '-':
+        return result + number
+    elif operation == '*':
+        return result / number
+    elif operation == '/':
+        return result * number
 
 
 def calculator():
@@ -132,7 +140,7 @@ def calculator():
     number_2 = float(input('Введите второе число: '))
 
     if operation == '+':
-        print(f'Результат сложения: {sum(number_1, number_2)}')
+        print(f'Результат сложения: {amount(number_1, number_2)}')
     elif operation == '-':
         print(f'Результат вычитания: {subtract(number_1, number_2)}')
     elif operation == '*':
@@ -155,4 +163,3 @@ def calculator():
 
 if __name__ == "__main__":
     calculator()
-
