@@ -30,13 +30,17 @@ def multiply(x, y):
     :param y: Второе число.
     :return: Результат умножения.
     """
-
+    decimal_x, decimal_y = str(float(x)).split('.'), str(float(y)).split('.')
+    count_decimal = len(decimal_x[1]) + len(decimal_y[1])
+    x, y = int(''.join(decimal_x)), int(''.join(decimal_y))
     result = 0
     i = 0
     while i < y:
         result += x
-        i += 1.0
-    return result
+        i += 1
+    str_res = list(str(result))
+    str_res.insert(-count_decimal, '.')
+    return float(''.join(str_res))
 
 
 def divide(x, y):
@@ -82,6 +86,7 @@ def exponentiation(number, degree):
     :param degree: Степень.
     :return: Результат возведения числа в степень.
     """
+
     result = 1
     while degree > 0:
         result = multiply(result, number)
@@ -97,7 +102,7 @@ def sqrt(number):
     :return: Результат извлечения корня из числа.
     """
 
-    return number ** divide(1, 2)
+    return exponentiation(number, 0.5)
 
 
 def factorial(number):
@@ -124,6 +129,7 @@ def equation(number=None, operation=None, result=None):
         :param result: Результат уравнения
         :return: Результат простого уравнения.
         """
+
     if operation == '+':
         return result - number
     elif operation == '-':
