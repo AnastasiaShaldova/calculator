@@ -94,15 +94,20 @@ def exponentiation(number, degree):
     return result
 
 
-def sqrt(number):
+def sqrt(number, accuracy=0.0001):
     """
     Функция извлекает корень из числа.
 
     :param number: Число.
+    :param accuracy: Точность.
     :return: Результат извлечения корня из числа.
     """
-
-    return exponentiation(number, 0.5)
+    guess = number
+    while True:
+        next_guess = 0.5 * (guess + number / guess)
+        if abs(next_guess - guess) < accuracy:
+            return next_guess
+        guess = next_guess
 
 
 def factorial(number):
