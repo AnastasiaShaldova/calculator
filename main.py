@@ -1,175 +1,35 @@
-def amount(x, y):
-    """
-    Функция сложения.
-
-    :param x: Первое число.
-    :param y: Второе число.
-    :return: Результат сложения.
-    """
-
-    return x + y
-
-
-def subtract(x, y):
-    """
-    Функция вычитания.
-
-    :param x: Первое число.
-    :param y: Второе число.
-    :return: Результат вычитания.
-    """
-
-    return x - y
-
-
-def multiply(x, y):
-    """
-    Функция умножения.
-
-    :param x: Первое число.
-    :param y: Второе число.
-    :return: Результат умножения.
-    """
-    decimal_x, decimal_y = str(float(x)).split('.'), str(float(y)).split('.')
-    count_decimal = len(decimal_x[1]) + len(decimal_y[1])
-    x, y = int(''.join(decimal_x)), int(''.join(decimal_y))
-    result = 0
-    i = 0
-    while i < y:
-        result += x
-        i += 1
-    str_res = list(str(result))
-    str_res.insert(-count_decimal, '.')
-    return float(''.join(str_res))
-
-
-def divide(x, y):
-    """
-    Функция деления.
-
-    :param x: Делимое число.
-    :param y: Делитель.
-    :return: Результат деления.
-    """
-
-    if y == 0:
-        print('Деление на 0 запрещено!')
-    count = 0.0
-    while x >= y:
-        x -= y
-        count += 1
-    else:
-        x = multiply(x, 10)
-        while x >= y:
-            x -= y
-            count += 0.1
-    return count
-
-
-def extract_percentage(number, percentage):
-    """
-    Функция извлекает процент из числа.
-
-    :param number: Число.
-    :param percentage: Процент, который нужно извлечь.
-    :return: Результат извлечения процента от числа.
-    """
-
-    return divide(multiply(number, percentage), 100)
-
-
-def exponentiation(number, degree):
-    """
-    Функция возводит число в степень.
-
-    :param number: Число.
-    :param degree: Степень.
-    :return: Результат возведения числа в степень.
-    """
-
-    result = 1
-    while degree > 0:
-        result = multiply(result, number)
-        degree -= 1
-    return result
-
-
-def sqrt(number, accuracy=0.0001):
-    """
-    Функция извлекает корень из числа.
-
-    :param number: Число.
-    :param accuracy: Точность.
-    :return: Результат извлечения корня из числа.
-    """
-    guess = number
-    while True:
-        next_guess = 0.5 * (guess + number / guess)
-        if abs(next_guess - guess) < accuracy:
-            return next_guess
-        guess = next_guess
-
-
-def factorial(number):
-    """
-    Функция вычисляет факториал числа.
-
-    :param number: Число.
-    :return: Результат вычисления факториала.
-    """
-
-    fact = 1
-    while number > 1:
-        fact = multiply(fact, number)
-        number -= 1
-    return fact
-
-
-def equation(number=None, operation=None, result=None):
-    """
-        Функция вычисляет простые уравнения.
-
-        :param operation:
-        :param number: Число.
-        :param result: Результат уравнения
-        :return: Результат простого уравнения.
-        """
-
-    if operation == '+':
-        return result - number
-    elif operation == '-':
-        return result + number
-    elif operation == '*':
-        return result / number
-    elif operation == '/':
-        return result * number
+from calculator import amount, subtract, multiply, divide, exponentiation, sqrt, extract_percentage, factorial
 
 
 def calculator():
-    operation = input('Выберите оператор (+, -, /, *, **, x^1/2, %, n!, equation, history): ')
-    number_1 = float(input('Введите первое число: '))
-    number_2 = float(input('Введите второе число: '))
+    operations = {
+        '+': amount,
+        '-': subtract,
+        '*': multiply,
+        '/': divide,
+        '**': exponentiation,
+        'x^1/2': sqrt,
+        '%': extract_percentage,
+        'n!': factorial
+    }
 
-    if operation == '+':
-        print(f'Результат сложения: {amount(number_1, number_2)}')
-    elif operation == '-':
-        print(f'Результат вычитания: {subtract(number_1, number_2)}')
-    elif operation == '*':
-        print(f'Результат умножения: {multiply(number_1, number_2)}')
-    elif operation == '/':
-        print(f'Результат деления: {divide(number_1, number_2)}')
-    elif operation == '**':
-        print(f'Результат возведения числа в степень: {exponentiation(number_1, number_2)}')
-    elif operation == 'x^1/2':
-        print(f'Результат извлечения корня из числа: {sqrt(number_1)}')
-    elif operation == '%':
-        print(f'Результат извлечения процента от числа: {extract_percentage(number_1, number_2)}')
-    elif operation == 'n!':
-        print(f'Результат вычисления факториала: {factorial(number_1)}')
-    elif operation == 'history':
+    operation = input('Выберите оператор (+, -, /, *, **, x^1/2, %, n!, equation, history): ')
+
+    if operation == 'history':
         print('Вывод истории операций.')
-    else:
+        return
+
+    if operation not in operations:
         print('Ошибка: неправильный оператор!')
+        return
+
+    number_1 = float(input('Введите первое число: '))
+    number_2 = None
+    if operation not in {'x^1/2', 'n!'}:
+        number_2 = float(input('Введите второе число: '))
+
+    result = operations[operation](number_1, number_2) if number_2 else operations[operation](number_1)
+    print(f'Результат {operation}: {result}')
 
 
 if __name__ == "__main__":
