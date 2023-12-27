@@ -30,17 +30,23 @@ def multiply(x, y):
     :param y: The second number.
     :return: The result of the multiplication.
     """
+    def func(a, b):
+        result = 0
+        item = 0
+        while item < b:
+            result += a
+            item += 1
+        return result
+
     decimal_x, decimal_y = str(float(x)).split('.'), str(float(y)).split('.')
     count_decimal = len(decimal_x[1]) + len(decimal_y[1])
     x, y = int(''.join(decimal_x)), int(''.join(decimal_y))
-    result = 0
-    i = 0
-    while i < y:
-        result += x
-        i += 1
-    str_res = list(str(result))
+
+    str_res = list(str(func(x, y)))
     str_res.insert(-count_decimal, '.')
-    return float(''.join(str_res))
+    result = ''.join(str_res)
+    print(result)
+    return result
 
 
 def divide(x, y):
@@ -66,7 +72,7 @@ def divide(x, y):
     final_result = str(int_result) + '.'
     while float_result != 0 and limit > 0:
         result = multiply(float_result, 10.0)
-        int_result, float_result = func(result, y)
+        int_result, float_result = func(float(result), float(y))
         final_result += str(int_result)
         limit -= 1
 
