@@ -45,7 +45,6 @@ def multiply(x, y):
     str_res = list(str(func(x, y)))
     str_res.insert(-count_decimal, '.')
     result = ''.join(str_res)
-    print(result)
     return result
 
 
@@ -61,6 +60,7 @@ def divide(x, y):
         return 'Деление на 0 запрещено!'
 
     def func(divisible, divisor):
+        divisible, divisor = float(divisible), float(divisor)
         division_result = 0
         while divisible >= divisor:
             divisible -= divisor
@@ -118,7 +118,7 @@ def exponentiation(number, degree):
         divisible = int(decimal_degree[0] + decimal_degree[1])
         divisor = int('1' + ('0' * len(decimal_degree[1])))
         result = sqrt(func(number, divisible), divisor)
-        return float(result)
+        return result
     else:
         pass
     return result
@@ -136,12 +136,13 @@ def sqrt(number, sq=0.5, accuracy=0.0001):
     Args:
 
     """
+
     guess = number
     while True:
         res = guess + divide(number, guess)
         next_guess = multiply(res, sq)
-        if abs(next_guess - guess) < accuracy:
-            return next_guess
+        if abs(float(next_guess) - guess) < accuracy:
+            return float(next_guess)
         guess = next_guess
 
 
