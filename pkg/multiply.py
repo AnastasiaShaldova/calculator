@@ -2,14 +2,38 @@ class Multiply:
     @staticmethod
     def _multiply_numbers(a, b):
         result = 0
-        item = 0
-        while item < b:
-            result += a
-            item += 1
+        while b:
+            if b & 1:
+                result += a
+            a <<= 1
+            b >>= 1
         return result
 
     @staticmethod
+    def count_characters(x, y):
+        dot_index_x = x.find('.')
+        dot_index_y = y.find('.')
+
+        if dot_index_x != -1 or dot_index_y != -1:
+            chars_after_dot_x = len(x) - dot_index_x - 1
+            chars_after_dot_y = len(y) - dot_index_y - 1
+            total_chars_after_dot = chars_after_dot_x + chars_after_dot_y
+            return total_chars_after_dot
+        else:
+            return 0
+
+    @staticmethod
+    def remove_dots(x, y):
+        if '.' in x:
+            x = x.replace('.', '')
+        if '.' in y:
+            y = y.replace('.', '')
+        return x, y
+
+    @staticmethod
     def insert_decimal_point(number, position):
+        if position == 0:
+            return number
         str_number = list(str(number))
         str_number.insert(-position, '.')
         result = ''.join(str_number)
@@ -17,9 +41,9 @@ class Multiply:
 
     @staticmethod
     def multiply(x, y):
-        decimal_x, decimal_y = str(float(x)).split('.'), str(float(y)).split('.')
-        count_decimal = len(decimal_x[1]) + len(decimal_y[1])
-        x, y = int(''.join(decimal_x)), int(''.join(decimal_y))
-        multiplied_result = Multiply._multiply_numbers(x, y)
-        result = Multiply.insert_decimal_point(multiplied_result, count_decimal)
+        x, y = str(x), str(y)
+        count_decimal = Multiply.count_characters(x, y)
+        rm_dots = Multiply.remove_dots(x, y)
+        res = Multiply._multiply_numbers(int(rm_dots[0]), int(rm_dots[1]))
+        result = Multiply.insert_decimal_point(res, count_decimal)
         return result

@@ -1,28 +1,24 @@
-# def sqrt(number, sq=0.5):
+from pkg.divide import Divider
+from pkg.multiply import Multiply
 
-#     a = 0
-#     b = int(number.split('.')[0])
-#     epsilon = 0.00001
-#
-#     while abs(b - a) > epsilon:
-#         c = divide((a + b), 2)
-#         if exponentiation(c, sq) == number:
-#             return c
-#         elif exponentiation(c, sq) > number:
-#             b = c
-#         else:
-#             a = c
-#
-#     return divide((a + b), 2)
-#
-#     accuracy = 0.0001
-#     guess = number
-#     while True:
-#         res = guess + (guess - number)
-#         next_guess = multiply(int(res), sq)
-#         if abs(float(next_guess) - guess) < accuracy:
-#             print(next_guess)
-#             return next_guess
-#         guess = next_guess
-#
-#     def sq(v, power=2):
+
+class Sqrt:
+
+    @staticmethod
+    def sqrt(number, sq=2):
+        x = number
+        while True:
+            x1 = ((sq - 1) * x + number / x ** (sq - 1)) / sq
+            if abs(x1 - x) < 0.0001:
+                return x
+            x = x1
+
+        # guess = number
+        # while True:
+        #     next_guess = sq * (guess + (number / guess))
+        #     if abs(next_guess - guess) < 0.0001:
+        #         return next_guess
+        #     guess = next_guess
+
+
+# print(Sqrt.sqrt(4194304, 10))

@@ -2,11 +2,11 @@ from history import History
 from pkg.amount import Amount
 from pkg.divide import Divider
 from pkg.equation import Equation
-# from pkg.exponentiation import Exponentiation
+from pkg.exponentiation import Exponentiation
 from pkg.extract_percentage import ExtractPercentage
 from pkg.factorial import Factorial
 from pkg.multiply import Multiply
-# from pkg.sqrt import Sqrt
+from pkg.sqrt import Sqrt
 from pkg.subtract import Subtract
 
 
@@ -19,11 +19,11 @@ class CalculatorApp:
         self.multiply_obj = Multiply()
         self.divider_obj = Divider()
         self.equation_obj = Equation()
-        # self.exponentiation_obj = Exponentiation()
+        self.exponentiation_obj = Exponentiation()
         self.extract_percentage_obj = ExtractPercentage()
         self.factorial_obj = Factorial()
         self.multiply_obj = Multiply()
-        # self.sqrt_obj = Sqrt()
+        self.sqrt_obj = Sqrt()
         self.subtract_obj = Subtract()
 
     def run(self):
@@ -34,6 +34,7 @@ class CalculatorApp:
 
             number_1 = None
             number_2 = None
+            number = None
 
             if operation in ('+', '-', '*', '/', '**'):
                 number_1 = float(input('Введите первое число: '))
@@ -42,22 +43,29 @@ class CalculatorApp:
                 number = float(input('Введите число: '))
 
             if operation == '+':
-                print(f'Результат сложения: {self.amount_obj.__add__(number_1, number_2)}')
+                print(f'Результат сложения: '
+                      f'{self.amount_obj.amount(number_1, number_2)}')
             elif operation == '-':
-                print(f'Результат вычитания: {self.subtract_obj.sub(number_1, number_2)}')
+                print(f'Результат вычитания: '
+                      f'{self.subtract_obj.sub(number_1, number_2)}')
             elif operation == '*':
-                print(f'Результат умножения: {self.multiply_obj.multiply(number_1, number_2)}')
+                print(f'Результат умножения: '
+                      f'{self.multiply_obj.multiply(number_1, number_2)}')
             elif operation == '/':
-                print(f'Результат деления: {self.divider_obj.divide(number_1, number_2)}')
+                print(f'Результат деления: '
+                      f'{self.divider_obj.divide(number_1, number_2)}')
             elif operation == '**':
-                print(f'Результат возведения числа в степень: {Exponentiation.exponentiation(number_1, number_2)}')
+                print(f'Результат возведения числа в степень: '
+                      f'{self.exponentiation_obj.exponentiation(number_1, number_2)}')
             elif operation == 'x^':
-                print(f'Результат извлечения корня из числа: {Sqrt.sqrt(number)}')
+                print(f'Результат извлечения корня из числа: '
+                      f'{self.sqrt_obj.sqrt(number)}')
             elif operation == '%':
                 print(f'Результат извлечения процента от числа: '
-                      f'{ExtractPercentage.extract_percentage(number_1, number_2)}')
+                      f'{self.extract_percentage_obj.extract_percentage(number_1, number_2)}')
             elif operation == 'n!':
-                print(f'Результат вычисления факториала: {Factorial.factorial(number)}')
+                print(f'Результат вычисления факториала: '
+                      f'{self.factorial_obj.factorial(number)}')
             elif operation == 'history':
                 self.history.show_history()
             else:

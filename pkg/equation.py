@@ -9,4 +9,3 @@ class Equation:
             return result / number
         elif operation == '/':
             return result * number
-

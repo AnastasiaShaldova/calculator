@@ -3,6 +3,15 @@ from pkg.multiply import Multiply
 
 class Divider:
     @staticmethod
+    def _perform_division(divisible, divisor):
+        divisible, divisor = float(divisible), float(divisor)
+        division_result = 0
+        while divisible >= divisor:
+            divisible -= divisor
+            division_result += 1
+        return division_result, divisible
+
+    @staticmethod
     def divide(x, y):
         if y == 0:
             return 'Деление на 0 запрещено!'
@@ -17,13 +26,4 @@ class Divider:
             final_result += str(int_result)
             limit -= 1
 
-        return float(final_result)
-
-    @staticmethod
-    def _perform_division(divisible, divisor):
-        divisible, divisor = float(divisible), float(divisor)
-        division_result = 0
-        while divisible >= divisor:
-            divisible -= divisor
-            division_result += 1
-        return division_result, divisible
+        return final_result

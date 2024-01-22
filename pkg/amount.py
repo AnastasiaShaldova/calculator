@@ -1,4 +1,4 @@
 class Amount:
     @staticmethod
-    def __add__(x, y):
+    def amount(x, y):
         return x + y
