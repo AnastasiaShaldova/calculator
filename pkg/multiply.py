@@ -14,13 +14,17 @@ class Multiply:
         dot_index_x = x.find('.')
         dot_index_y = y.find('.')
 
-        if dot_index_x != -1 or dot_index_y != -1:
+        chars_after_dot_x = 0
+        chars_after_dot_y = 0
+
+        if dot_index_x != -1:
             chars_after_dot_x = len(x) - dot_index_x - 1
+
+        if dot_index_y != -1:
             chars_after_dot_y = len(y) - dot_index_y - 1
-            total_chars_after_dot = chars_after_dot_x + chars_after_dot_y
-            return total_chars_after_dot
-        else:
-            return 0
+
+        total_chars_after_dot = chars_after_dot_x + chars_after_dot_y
+        return total_chars_after_dot
 
     @staticmethod
     def remove_dots(x, y):
